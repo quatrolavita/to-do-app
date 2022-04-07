@@ -1,21 +1,36 @@
-import { applyMiddleware, compose, createStore } from "redux";
-import createSagaMiddleware from "redux-saga";
+import { applyMiddleware, combineReducers, compose, createStore } from 'redux';
+import { all } from 'redux-saga/effects';
+import createSagaMiddleware from 'redux-saga';
 
-export default function configureStore() {
-  const sagaMiddleware = createSagaMiddleware();
-  const composeEnhancers =
-    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-  const store = createStore(
-    rootReducer,
-    composeEnhancers(applyMiddleware(sagaMiddleware))
-  );
-  sagaMiddleware.run(rootSaga);
+// reducers
+import toDoCardReducer from './feature/ToDoCard/store/reducer';
 
-  return { store };
-}
+// sagas
 
 declare global {
-  interface Window {
-    __REDUX_DEVTOOLS_EXTENSION_COMPOSE__?: typeof compose;
-  }
+    interface Window {
+        __REDUX_DEVTOOLS_EXTENSION_COMPOSE__?: typeof compose;
+    }
+}
+
+const reducers = combineReducers({
+    toDoCard: toDoCardReducer,
+});
+
+function* rootSaga() {
+    yield all([]);
+}
+
+export default function configureStore() {
+    const sagaMiddleware = createSagaMiddleware();
+    const composeEnhancers =
+        window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+    const store = createStore(
+        reducers,
+        composeEnhancers(applyMiddleware(sagaMiddleware))
+    );
+    sagaMiddleware.run(rootSaga);
+
+    return { store };
 }
