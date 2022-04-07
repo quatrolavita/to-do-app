@@ -11,8 +11,8 @@ const initialState: cardInitialStateType = {
 };
 
 export default function toDoCardReducer(
-    action: IAction<ToDoCardActionTypes>,
-    state = initialState
+    state = initialState,
+    action: IAction<ToDoCardActionTypes>
 ) {
     switch (action.type) {
         case ToDoCardActionTypes.TODO_CARD_LIST: {

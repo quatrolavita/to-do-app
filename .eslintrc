@@ -37,5 +37,13 @@
     ],
     "no-shadow": "off",
     "@typescript-eslint/no-shadow": ["error"]
-  }
+  },
+  "overrides": [
+    {
+      "files": ["./src/**/**/reducer.ts"],
+      "rules": {
+        "default-param-last": "off"
+      }
+    }
+  ]
 }
