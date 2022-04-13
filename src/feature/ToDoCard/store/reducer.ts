@@ -18,6 +18,9 @@ export default function toDoCardReducer(
         case ToDoCardActionTypes.TODO_CARD_LIST: {
             return { ...state, cardDataList: action.payload };
         }
+        case ToDoCardActionTypes.MAKE_TODO_CARD_LIST_REQUEST: {
+            return { ...state };
+        }
         default:
             return state;
     }

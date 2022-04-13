@@ -1,0 +1,39 @@
+.signUpFormContainer {
+    display: flex;
+    width: 350px;
+    padding: 24px 16px;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    box-shadow: -1px 10px 11px 2px rgba(189,189,189,0.69);
+}
+
+.signUpFormContainer > form {
+    width: 100%;
+}
+
+.defaultInputField {
+    width: 100%;
+    margin-bottom: 48px;
+}
+
+.defaultInputField {
+
+}
+
+.defaultInputField > label > input {
+    position: relative;
+    width: 100%;
+    display: block;
+    font-family: Roboto sans-serif;
+    font-size: 16px;
+    line-height: 24px;
+    color: #1d1d1d;
+    background: hsla(0,0%,100%,.1);
+    border: 1px solid #1d1d1d;
+    border-radius: 12px;
+    padding: 16px;
+}
+.h1 {
+    margin-bottom: 48px;
+}

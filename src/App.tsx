@@ -1,6 +1,7 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import 'assets/css/App.css';
+import 'assets/css/reset.css';
 import Navigation from 'router/Routes';
 import configureStore from './store';
 

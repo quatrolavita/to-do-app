@@ -1,4 +1,5 @@
 export interface IToDoCard {
     description: string;
-    completed: boolean;
+    status: 'IP' | 'DN';
+    pub_date?: string;
 }

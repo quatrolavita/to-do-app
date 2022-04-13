@@ -3,7 +3,11 @@ import { all } from 'redux-saga/effects';
 import createSagaMiddleware from 'redux-saga';
 
 // reducers
-import toDoCardReducer from './feature/ToDoCard/store/reducer';
+import toDoCardReducer from 'feature/ToDoCard/store/reducer';
+import authReducer from 'feature/Auth/store/reducer';
+import signUpWatcher from './feature/Auth/operations/signUp';
+import signInWatcher from './feature/Auth/operations/signIn';
+import toDoCardWatcher from './feature/ToDoCard/operations/toDoCard';
 
 // sagas
 
@@ -15,10 +19,11 @@ declare global {
 
 const reducers = combineReducers({
     toDoCard: toDoCardReducer,
+    auth: authReducer,
 });
 
 function* rootSaga() {
-    yield all([]);
+    yield all([signUpWatcher(), signInWatcher(), toDoCardWatcher()]);
 }
 
 export default function configureStore() {
