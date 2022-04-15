@@ -1,0 +1,34 @@
+.toDoCard {
+    display: flex;
+    align-items: center;
+    width: 500px;
+    height: 100px;
+    padding: 16px;
+    border-radius: 10px;
+    background-color: #ffffff ;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    margin-bottom: 16px;
+}
+
+
+.toDOCardWrapper {
+    position: relative;
+    display: flex;
+}
+
+.controlsWrapper {
+    position: relative;
+    width: 40px;
+}
+
+.cardTextDescriptionInput {
+    background-color: #ffffff;
+    color: #1d1d1d;
+    font-size: 18px;
+    line-height: 24px;
+    font-weight: 500;
+}
+
+.cardTextDescriptionInput:focus {
+    background-color: #c4c4c4;
+}

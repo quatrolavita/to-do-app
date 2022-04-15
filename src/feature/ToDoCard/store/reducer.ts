@@ -21,6 +21,15 @@ export default function toDoCardReducer(
         case ToDoCardActionTypes.MAKE_TODO_CARD_LIST_REQUEST: {
             return { ...state };
         }
+        case ToDoCardActionTypes.CREATE_CARD: {
+            return { ...state };
+        }
+        case ToDoCardActionTypes.DELETE_CARD: {
+            return { ...state };
+        }
+        case ToDoCardActionTypes.UPDATE_CARD: {
+            return { ...state };
+        }
         default:
             return state;
     }

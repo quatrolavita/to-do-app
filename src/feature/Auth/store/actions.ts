@@ -1,7 +1,7 @@
 import { IAction } from 'shared/interfaces/IAction';
 import { ISignUpData } from 'shared/interfaces/ISignUpData';
+import { IToken } from 'shared/interfaces/ITokens';
 import { ISignInData } from '../../../shared/interfaces/ISignInData';
-import { IToken } from '../../../shared/interfaces/ITokens';
 
 export enum AuthActionTypes {
     MAKE_SIGNUP_REQUEST = 'AUTH/MAKE_SIGNUP_REQUEST',

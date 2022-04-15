@@ -8,6 +8,9 @@ import authReducer from 'feature/Auth/store/reducer';
 import signUpWatcher from './feature/Auth/operations/signUp';
 import signInWatcher from './feature/Auth/operations/signIn';
 import toDoCardWatcher from './feature/ToDoCard/operations/toDoCard';
+import createToDoWatcher from './feature/ToDoCard/operations/createToDo';
+import deleteToDoCardWatcher from './feature/ToDoCard/operations/deleteToDo';
+import UpdateToDoWatcher from './feature/ToDoCard/operations/updateToDo';
 
 // sagas
 
@@ -23,7 +26,14 @@ const reducers = combineReducers({
 });
 
 function* rootSaga() {
-    yield all([signUpWatcher(), signInWatcher(), toDoCardWatcher()]);
+    yield all([
+        signUpWatcher(),
+        signInWatcher(),
+        toDoCardWatcher(),
+        createToDoWatcher(),
+        deleteToDoCardWatcher(),
+        UpdateToDoWatcher(),
+    ]);
 }
 
 export default function configureStore() {
