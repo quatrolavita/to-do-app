@@ -10,6 +10,18 @@
     margin-bottom: 16px;
 }
 
+.checkBoxToDoCard {
+    width: 32px;
+    height: 32px;
+    border-radius: 100%;
+    border: 1px #c4c4c4 solid;
+    margin-right: 24px;
+}
+
+.checkBoxToDoCard:checked {
+    background-color: #88EC86;
+}
+
 
 .toDOCardWrapper {
     position: relative;

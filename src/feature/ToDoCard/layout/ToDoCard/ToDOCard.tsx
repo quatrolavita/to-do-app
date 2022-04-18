@@ -1,4 +1,4 @@
-import React, { createRef, useState } from 'react';
+import React, { createRef, useState, useEffect } from 'react';
 
 // styles
 import { IToDoCard } from 'shared/interfaces/IToDoCard';
@@ -10,7 +10,13 @@ import DeleteToDo from '../Controls/Delete/DeleteToDo';
 import UpdateToDo from '../Controls/Update/UpdateToDo';
 import { updateToDoCard } from '../../store/actions';
 
-const boolStatusTask = (status: 'IP' | 'DN') => status === 'DN';
+const statusToBool = (status: 'IP' | 'DN') => status === 'DN';
+const boolToStatus = (status: boolean) => {
+    if (status) {
+        return 'DN';
+    }
+    return 'IP';
+};
 
 export default function ToDoCard({ description, status, pk }: IToDoCard) {
     const dispatch = useDispatch();
@@ -18,7 +24,7 @@ export default function ToDoCard({ description, status, pk }: IToDoCard) {
     const [toDoCardDescription, setDescription] = useState(description);
 
     const [isTaskComplete, setTaskComplete] = useState<boolean>(
-        boolStatusTask(status)
+        statusToBool(status)
     );
     const [showControls, setShowControls] = useState<boolean>(false);
     const [isUpdateState, setUpdateState] = useState<boolean>(false);
@@ -28,17 +34,36 @@ export default function ToDoCard({ description, status, pk }: IToDoCard) {
         setDescription(event?.target?.value);
     };
 
+    const onChangeCheckBox = () => {
+        setTaskComplete(!isTaskComplete);
+    };
+    useEffect(() => {
+        dispatch(
+            updateToDoCard({
+                description: toDoCardDescription,
+                status: boolToStatus(isTaskComplete),
+                pk,
+            })
+        );
+    }, [isTaskComplete, dispatch, pk, toDoCardDescription]);
+
     const onClickUpdateButton = () => {
         setUpdateState(true);
         toDoCardInputRef.current?.focus();
     };
 
+    useEffect(() => {
+        if (isUpdateState) {
+            toDoCardInputRef.current?.focus();
+        }
+    }, [isUpdateState, toDoCardInputRef]);
+
     const onClickSubmitUpdateButton = () => {
         setUpdateState(false);
         dispatch(
             updateToDoCard({
-                description,
-                status: 'IP',
+                description: toDoCardDescription,
+                status: boolToStatus(isTaskComplete),
                 pk,
             })
         );
@@ -59,6 +84,12 @@ export default function ToDoCard({ description, status, pk }: IToDoCard) {
             className={styles.toDOCardWrapper}
         >
             <div className={styles.toDoCard}>
+                <input
+                    type="checkbox"
+                    className={styles.checkBoxToDoCard}
+                    checked={isTaskComplete}
+                    onChange={onChangeCheckBox}
+                />
                 <input
                     type="text"
                     disabled={!isUpdateState}

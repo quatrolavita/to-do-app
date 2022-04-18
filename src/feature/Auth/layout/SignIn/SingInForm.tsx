@@ -33,7 +33,9 @@ export default function SignInForm({ onSubmit }: SignUpFormProps) {
                                 <p>Username</p>
                                 <Field name="username" />
                                 {errors.username && touched.username && (
-                                    <div>{errors.username}</div>
+                                    <div className={styles.validationHint}>
+                                        {errors.username}
+                                    </div>
                                 )}
                             </label>
                         </div>
@@ -42,11 +44,20 @@ export default function SignInForm({ onSubmit }: SignUpFormProps) {
                                 <p>Password</p>
                                 <Field name="password" type="password" />
                                 {errors.password && touched.password && (
-                                    <div>{errors.password}</div>
+                                    <div className={styles.validationHint}>
+                                        {errors.password}
+                                    </div>
                                 )}
                             </label>
                         </div>
-                        <button type="submit">Submit</button>
+                        <div className={styles.buttonWrapper}>
+                            <button
+                                type="submit"
+                                className={styles.submitButton}
+                            >
+                                Submit
+                            </button>
+                        </div>
                     </Form>
                 )}
             </Formik>

@@ -1,6 +1,8 @@
 import { applyMiddleware, combineReducers, compose, createStore } from 'redux';
 import { all } from 'redux-saga/effects';
 import createSagaMiddleware from 'redux-saga';
+import { persistStore, persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 
 // reducers
 import toDoCardReducer from 'feature/ToDoCard/store/reducer';
@@ -19,6 +21,11 @@ declare global {
         __REDUX_DEVTOOLS_EXTENSION_COMPOSE__?: typeof compose;
     }
 }
+
+const persistConfig = {
+    key: 'root',
+    storage,
+};
 
 const reducers = combineReducers({
     toDoCard: toDoCardReducer,
@@ -41,11 +48,15 @@ export default function configureStore() {
     const composeEnhancers =
         window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
+    const pReducer = persistReducer(persistConfig, reducers);
+
     const store = createStore(
-        reducers,
+        pReducer,
         composeEnhancers(applyMiddleware(sagaMiddleware))
     );
     sagaMiddleware.run(rootSaga);
 
-    return { store };
+    const persistor = persistStore(store);
+
+    return { store, persistor };
 }

@@ -39,7 +39,9 @@ export default function SignUpForm({ onSubmit }: SignUpFormProps) {
                                 <p>Username</p>
                                 <Field name="username" />
                                 {errors.username && touched.username && (
-                                    <div>{errors.username}</div>
+                                    <div className={styles.validationHint}>
+                                        {errors.username}
+                                    </div>
                                 )}
                             </label>
                         </div>
@@ -47,7 +49,9 @@ export default function SignUpForm({ onSubmit }: SignUpFormProps) {
                             <label htmlFor="email">
                                 <p>Email</p> <Field name="email" type="email" />
                                 {errors.email && touched.email && (
-                                    <div>{errors.email}</div>
+                                    <div className={styles.validationHint}>
+                                        {errors.email}
+                                    </div>
                                 )}
                             </label>
                         </div>
@@ -56,7 +60,9 @@ export default function SignUpForm({ onSubmit }: SignUpFormProps) {
                                 <p>Password</p>
                                 <Field name="password" type="password" />
                                 {errors.password && touched.password && (
-                                    <div>{errors.password}</div>
+                                    <div className={styles.validationHint}>
+                                        {errors.password}
+                                    </div>
                                 )}
                             </label>
                         </div>
@@ -66,11 +72,20 @@ export default function SignUpForm({ onSubmit }: SignUpFormProps) {
                                 <Field name="confirmPassword" type="password" />
                                 {errors.confirmPassword &&
                                     touched.confirmPassword && (
-                                        <div>{errors.confirmPassword}</div>
+                                        <div className={styles.validationHint}>
+                                            {errors.confirmPassword}
+                                        </div>
                                     )}
                             </label>
                         </div>
-                        <button type="submit">Submit</button>
+                        <div className={styles.buttonWrapper}>
+                            <button
+                                type="submit"
+                                className={styles.submitButton}
+                            >
+                                Submit
+                            </button>
+                        </div>
                     </Form>
                 )}
             </Formik>

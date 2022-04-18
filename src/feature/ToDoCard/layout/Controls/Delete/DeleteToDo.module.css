@@ -10,6 +10,9 @@
     transform: scale(0);
     transition: transform 0.1s ease-out;
 }
+.deleteButton:active {
+    transform: scale(0.9);
+}
 
 .updateState {
     background: #ffffff
