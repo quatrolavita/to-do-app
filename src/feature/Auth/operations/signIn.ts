@@ -19,9 +19,14 @@ type ResponseGenerator = {
 function* SignInWorker(action: GetTokenRequestAction) {
     const { payload } = action;
 
-    const response: ResponseGenerator = yield getToken(payload);
-    yield put(setToken(response.data));
-    localStorage.setItem('token', response.data.access);
+    try {
+        const response: ResponseGenerator = yield getToken(payload);
+        yield put(setToken(response.data));
+        localStorage.setItem('token', response.data.access);
+        localStorage.setItem('refresh', response.data.refresh);
+    } catch (error) {
+        // @TODO make error handler
+    }
 }
 
 export default function* SignInWatcher() {

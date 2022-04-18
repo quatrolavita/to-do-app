@@ -18,8 +18,12 @@ type ResponseGenerator = {
 
 function* signUpWorker(action: SignUpRequestAction) {
     const { payload } = action;
-    const response: ResponseGenerator = yield signUp(payload);
-    console.log('respnse', response);
+
+    try {
+        const response: ResponseGenerator = yield signUp(payload);
+    } catch (error) {
+        // @TODO make error handler
+    }
 }
 
 export default function* signUpWatcher() {

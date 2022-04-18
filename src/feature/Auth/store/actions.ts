@@ -7,6 +7,7 @@ export enum AuthActionTypes {
     MAKE_SIGNUP_REQUEST = 'AUTH/MAKE_SIGNUP_REQUEST',
     MAKE_GET_TOKEN_REQUEST = 'AUTH/MAKE_GET_TOKEN_REQUEST',
     SET_TOKEN = 'AUTH/SET_TOKEN',
+    IS_LOG_IN = 'AUTH/IS_LOG_IN',
 }
 
 export type SignUpRequestAction = IAction<
@@ -18,6 +19,8 @@ export type GetTokenRequestAction = IAction<
     AuthActionTypes.MAKE_GET_TOKEN_REQUEST,
     ISignInData
 >;
+
+export type setLogInAction = IAction<AuthActionTypes.IS_LOG_IN, boolean>;
 
 export type SetTokenAction = IAction<AuthActionTypes.SET_TOKEN, IToken>;
 
@@ -41,5 +44,12 @@ export function setToken(tokens: IToken): SetTokenAction {
     return {
         type: AuthActionTypes.SET_TOKEN,
         payload: tokens,
+    };
+}
+
+export function setLogIn(status: boolean): setLogInAction {
+    return {
+        type: AuthActionTypes.IS_LOG_IN,
+        payload: status,
     };
 }

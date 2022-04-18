@@ -1,16 +1,18 @@
 import { IAction } from 'shared/interfaces/IAction';
 
+import { IToken } from 'shared/interfaces/ITokens';
 import { AuthActionTypes } from './actions';
-import { IToken } from '../../../shared/interfaces/ITokens';
 
 type SignUpInitialStateType = {
     username: string | null;
     token: IToken;
+    isLogin: boolean;
 };
 
 const initialState: SignUpInitialStateType = {
     username: null,
     token: { access: '', refresh: '' },
+    isLogin: false,
 };
 
 export default function authReducer(
@@ -31,6 +33,12 @@ export default function authReducer(
             return {
                 ...state,
                 token: action.payload,
+            };
+        }
+        case AuthActionTypes.IS_LOG_IN: {
+            return {
+                ...state,
+                isLogin: action.payload,
             };
         }
         default:
