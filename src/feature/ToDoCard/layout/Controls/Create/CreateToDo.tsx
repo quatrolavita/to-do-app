@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 // styles
 import ClassNames from 'classnames/bind';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router';
 import styles from './Create.module.css';
 
 // img
@@ -15,13 +16,21 @@ const cx = ClassNames.bind(styles);
 function CreateToDo() {
     const dispatch = useDispatch();
 
+    const isFirstRender = useRef(false);
+
     const [isOpen, setIsOpen] = useState(false);
     const [description, setDescription] = useState('');
+
+    useEffect(() => {
+        if (!isFirstRender.current && isOpen) {
+            isFirstRender.current = true;
+        }
+    }, [isOpen]);
 
     const imageCloseStyles = cx({
         createCloseImg: true,
         open: isOpen,
-        appearanceAfterClose: !isOpen,
+        appearanceAfterClose: isFirstRender.current && !isOpen,
     });
 
     const imageOpenStyles = cx({
@@ -32,7 +41,7 @@ function CreateToDo() {
     const inputStyles = cx({
         toDoCardDescriptionInputWrapper: true,
         openActive: isOpen,
-        inputDisappearance: !isOpen,
+        inputDisappearance: isFirstRender.current && !isOpen,
     });
 
     const handleClick = () => {

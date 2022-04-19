@@ -10,11 +10,9 @@ type UpdateToDoProps = {
     showUpdateButton: boolean;
     onClickUpdate: () => void;
     updateState: boolean;
-    pk: number;
 };
 
 function UpdateToDo({
-    pk,
     onClickUpdate,
     updateState = false,
     showUpdateButton = true,

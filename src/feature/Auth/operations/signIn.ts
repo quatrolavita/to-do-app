@@ -1,11 +1,7 @@
-import { takeLatest, put } from 'redux-saga/effects';
-import { getToken } from 'shared/api/api';
+import { takeLatest, call } from "redux-saga/effects";
+import { getToken } from "shared/api/api";
 import { IToken } from 'shared/interfaces/ITokens';
-import {
-    AuthActionTypes,
-    GetTokenRequestAction,
-    setToken,
-} from '../store/actions';
+import { AuthActionTypes, GetTokenRequestAction } from '../store/actions';
 
 type ResponseGenerator = {
     config: any;
@@ -16,14 +12,25 @@ type ResponseGenerator = {
     statusText: string;
 };
 
+const setTokensToCookie = (access: string, refresh: string): void => {
+    document.cookie = `access=${access}`;
+    document.cookie = `refresh=${refresh}`;
+};
+
 function* SignInWorker(action: GetTokenRequestAction) {
-    const { payload } = action;
+    const { username, password, navigate } = action.payload;
 
     try {
-        const response: ResponseGenerator = yield getToken(payload);
-        yield put(setToken(response.data));
-        localStorage.setItem('token', response.data.access);
-        localStorage.setItem('refresh', response.data.refresh);
+        const response: ResponseGenerator = yield getToken({
+            username,
+            password
+        });
+        yield call(
+          setTokensToCookie,
+          response.data.access,
+          response.data.refresh
+        );
+        yield call(navigate, "/");
     } catch (error) {
         // @TODO make error handler
     }

@@ -4,8 +4,9 @@ import { createToDoCard } from '../../../shared/api/api';
 
 function* createToDoWorker(action: CreateToDoAction) {
     const { payload } = action;
-    const response = yield createToDoCard(payload);
-    console.log('create respnse', response);
+    try {
+        const response = yield createToDoCard(payload);
+    } catch (error) {}
 }
 
 export default function* createToDoWatcher() {
