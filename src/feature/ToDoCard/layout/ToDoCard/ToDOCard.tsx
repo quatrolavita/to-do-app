@@ -2,9 +2,9 @@ import React, { createRef, useState, useEffect } from 'react';
 
 // styles
 import { IToDoCard } from 'shared/interfaces/IToDoCard';
-import { useDispatch } from "react-redux";
-import useStateCallback from "shared/hooks/useStateWithCallback";
-import styles from "./ToDoCard.module.css";
+import { useDispatch } from 'react-redux';
+import useStateCallback from 'shared/hooks/useStateWithCallback';
+import styles from './ToDoCard.module.css';
 
 // components
 import DeleteToDo from '../Controls/Delete/DeleteToDo';
@@ -25,7 +25,7 @@ export default function ToDoCard({ description, status, pk }: IToDoCard) {
     const [toDoCardDescription, setDescription] = useState(description);
 
     const [isTaskComplete, setTaskComplete] = useStateCallback(
-      statusToBool(status)
+        statusToBool(status)
     );
     const [showControls, setShowControls] = useState<boolean>(false);
     const [isUpdateState, setUpdateState] = useState<boolean>(false);
@@ -38,11 +38,11 @@ export default function ToDoCard({ description, status, pk }: IToDoCard) {
     const onChangeCheckBox = () => {
         setTaskComplete(!isTaskComplete, (state) => {
             dispatch(
-              updateToDoCard({
-                  description: toDoCardDescription,
-                  status: boolToStatus(state),
-                  pk
-              })
+                updateToDoCard({
+                    description: toDoCardDescription,
+                    status: boolToStatus(state),
+                    pk,
+                })
             );
         });
     };

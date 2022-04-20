@@ -25,6 +25,7 @@ declare global {
 const persistConfig = {
     key: 'root',
     storage,
+    blacklist: ['toDoCard'],
 };
 
 const reducers = combineReducers({

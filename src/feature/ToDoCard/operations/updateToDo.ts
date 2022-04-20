@@ -1,12 +1,13 @@
-import { takeLatest } from 'redux-saga/effects';
+import { takeLatest, call } from 'redux-saga/effects';
 import { updateToDoCard } from 'shared/api/api';
 import { ToDoCardActionTypes, UpdateToDoAction } from '../store/actions';
+import { toDoCardWorker } from './toDoCard';
 
 function* UpdateToDoWorker(action: UpdateToDoAction) {
     const { payload } = action;
 
-    const response = yield updateToDoCard(payload);
-    console.log('response Update', response);
+    yield updateToDoCard(payload);
+    yield call(toDoCardWorker);
 }
 
 export default function* UpdateToDoWatcher() {

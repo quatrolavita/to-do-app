@@ -1,8 +1,7 @@
 import { put, takeLatest } from 'redux-saga/effects';
 import { getToDoCardList } from 'shared/api/api';
 import { IToDoCard } from 'shared/interfaces/IToDoCard';
-import { setToDoCardList, ToDoCardActionTypes } from "../store/actions";
-import { getCookieByName } from "../../../shared/helpers/utils";
+import { setToDoCardList, ToDoCardActionTypes } from '../store/actions';
 
 type ResponseGenerator = {
     config: any;
@@ -13,7 +12,7 @@ type ResponseGenerator = {
     statusText: string;
 };
 
-function* toDoCardWorker() {
+export function* toDoCardWorker() {
     const response: ResponseGenerator = yield getToDoCardList();
     yield put(setToDoCardList(response.data));
 }

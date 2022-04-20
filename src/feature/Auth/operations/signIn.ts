@@ -1,5 +1,5 @@
-import { takeLatest, call } from "redux-saga/effects";
-import { getToken } from "shared/api/api";
+import { takeLatest, call } from 'redux-saga/effects';
+import { getToken } from 'shared/api/api';
 import { IToken } from 'shared/interfaces/ITokens';
 import { AuthActionTypes, GetTokenRequestAction } from '../store/actions';
 
@@ -23,14 +23,14 @@ function* SignInWorker(action: GetTokenRequestAction) {
     try {
         const response: ResponseGenerator = yield getToken({
             username,
-            password
+            password,
         });
         yield call(
-          setTokensToCookie,
-          response.data.access,
-          response.data.refresh
+            setTokensToCookie,
+            response.data.access,
+            response.data.refresh
         );
-        yield call(navigate, "/");
+        yield call(navigate, '/');
     } catch (error) {
         // @TODO make error handler
     }
