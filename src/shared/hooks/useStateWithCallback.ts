@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
 
+// @TODO make typing
 export default function useStateCallback(initialState: any) {
     const [state, setState] = useState(initialState);
     const cbRef = useRef(null); // init mutable ref container for callbacks
