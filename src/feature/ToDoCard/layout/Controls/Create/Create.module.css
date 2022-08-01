@@ -1,0 +1,191 @@
+/*@TODO refactor class names*/
+
+.fixedControls {
+    position: fixed;
+    bottom: 48px;
+    right: 48px;
+    width: 56px;
+    height: 56px;
+}
+
+.createToDoButton {
+    position: absolute;
+    width: 56px;
+    height: 56px;
+    cursor: pointer;
+    border-radius: 100%;
+    background-color: #ffffff;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+
+}
+
+.createToDoButton:hover {
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.5);
+    transition: box-shadow 0.1s ease-in;
+}
+
+.createCloseImg {
+    opacity: 1;
+    position: absolute;
+    left: 15%;
+    top: 15%;
+}
+
+.createOpenImg {
+    opacity: 0;
+    position: absolute;
+    left: 15%;
+    top: 43%;
+}
+
+.open {
+    animation: 0.5s ease-in clickSpinDisappearance;
+    animation-fill-mode: forwards;
+}
+
+.openActive {
+    animation: 1.2s ease-out appearance;
+    animation-fill-mode: forwards;
+}
+
+
+.appearanceAfterClose {
+    animation: 0.5s ease-in clickSpinAppearance;
+    animation-fill-mode: forwards;
+}
+
+.toDoCardDescriptionInputWrapper {
+    opacity: 0;
+    position: absolute;
+    width: 500px;
+    top: -148px;
+    left: -502px;
+    height: 148px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+}
+
+.inputDisappearance {
+    animation: 0.5s ease-in inputDisappearance;
+    animation-fill-mode: forwards;
+}
+
+.toDoCardDescriptionInput{
+    height: 56px;
+    border: 0.5px #c4c4c4 solid;
+    border-radius: 10px;
+    padding: 4px;
+    margin-bottom: 24px;
+}
+
+.controlButtonBox {
+    display: flex;
+    justify-content: center;
+}
+
+.createButton {
+    width: 150px;
+    height: 48px;
+    font-size: 20px;
+    line-height: 24px;
+    text-transform: uppercase;
+    font-weight: 700;
+    border-radius: 24px;
+    background-color: #88EC86;
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 24px ;
+}
+
+.createButton:active {
+    background-color: #ffffff;
+    color: #1d1d1d;
+}
+
+.dismissButton {
+    width: 150px;
+    height: 48px;
+    font-size: 20px;
+    line-height: 24px;
+    font-weight: 700;
+    text-transform: uppercase;
+    border-radius: 24px;
+    background-color: #F87777;
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.dismissButton:active {
+    background-color: #ffffff;
+    color: #1d1d1d;
+}
+
+
+@keyframes hoverSpin {
+   0% {
+    transform: rotate(0deg);
+}
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes clickSpinDisappearance {
+    0% {
+        transform: rotate(0deg);
+        opacity: 1;
+    }
+    80% {
+        transform: rotate(90deg);
+    }
+    100% {
+        transform: rotate(90deg);
+        opacity: 0;
+    }
+}
+
+
+@keyframes clickSpinAppearance {
+    0% {
+        transform: rotate(90deg);
+        opacity: 0;
+    }
+    80% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(0deg);
+        opacity: 1;
+    }
+}
+
+
+@keyframes appearance {
+    0% {
+
+        opacity: 0;
+    }
+    100% {
+
+        opacity: 1;
+    }
+}
+
+@keyframes inputDisappearance {
+    0% {
+
+        opacity: 1;
+    }
+    100% {
+
+        opacity: 0;
+    }
+}
