@@ -7,7 +7,6 @@
       "esnext"
     ],
     "baseUrl": "src",
-    "include": ["src"],
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
